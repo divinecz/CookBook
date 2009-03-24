@@ -9,7 +9,64 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090323162548) do
+ActiveRecord::Schema.define(:version => 20090324200705) do
+
+  create_table "categories", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "courses", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "ingredient_types", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "ingredients", :force => true do |t|
+    t.string   "name"
+    t.integer  "unit_carbs",         :limit => 10, :precision => 10, :scale => 0
+    t.integer  "unit_protein",       :limit => 10, :precision => 10, :scale => 0
+    t.integer  "unit_fat",           :limit => 10, :precision => 10, :scale => 0
+    t.integer  "unit_sugar",         :limit => 10, :precision => 10, :scale => 0
+    t.integer  "unit_vitamin_a",     :limit => 10, :precision => 10, :scale => 0
+    t.integer  "unit_vitamin_b6",    :limit => 10, :precision => 10, :scale => 0
+    t.integer  "unit_vitamin_c",     :limit => 10, :precision => 10, :scale => 0
+    t.integer  "unit_calcium",       :limit => 10, :precision => 10, :scale => 0
+    t.integer  "ingredient_type_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "recipe_category", :force => true do |t|
+    t.integer  "recipe_id"
+    t.integer  "category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "recipe_ingredients", :force => true do |t|
+    t.integer  "amount",        :limit => 10, :precision => 10, :scale => 0
+    t.string   "units"
+    t.integer  "recipe_id"
+    t.integer  "ingredient_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "recipes", :force => true do |t|
+    t.string   "name"
+    t.text     "directions"
+    t.integer  "course_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "login"
