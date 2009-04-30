@@ -1,0 +1,2 @@
+page[:content].replace_html :partial => 'recipe_form'#@recipe
+page[:recipe_name].focus

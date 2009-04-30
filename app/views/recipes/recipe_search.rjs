@@ -1,0 +1,3 @@
+page[:my_recipes].replace_html(:partial => 'recipe_link', :collection => @recipes)
+page[:new_recipes].replace_html :partial => 'recipe_link', :collection => @new_recipes
+page[:popular_recipes].replace_html :partial => 'recipe_link', :collection => @popular_recipes

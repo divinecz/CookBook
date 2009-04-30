@@ -1,0 +1,9 @@
+<ul class="menu" id="recipe_menu">
+	<% if favorite_recipe = current_user.favorite_recipe?(recipe) -%>
+		<%= content_tag :li, link_to_remote('Upravit', :url => edit_recipe_path(recipe), :method => :get, :html => { :title => 'Upravit recept.' }) %>
+		<%= content_tag :li, link_to('Poslat', "#", :title => 'Poslat recept známému.') %>
+		<%= content_tag :li, link_to_remote('Odstranit', :url => favorite_recipe, :method => 'delete', :html => { :class => 'warning', :title => 'Odstranit recept z mé kuchařky.' }) %>
+	<% else -%>
+		<%= content_tag :li, link_to_remote('Přidat recept do mé kuchařky', :url => favorite_recipes_path(:recipe_id => recipe.id), :method => 'post', :html => { :class => 'add', :title => 'Přidat recept do mé kuchařky.' }) %>
+	<% end -%>
+</ul>

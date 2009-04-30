@@ -1,0 +1,75 @@
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, code, del, dfn, em, img, q, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-weight: inherit;
+	font-style: inherit;
+	font-size: 100%;
+	font-family: inherit;
+	vertical-align: baseline;
+}
+
+textarea, input, select {
+	font-weight: inherit;
+	font-style: inherit;
+	font-size: inherit;
+	font-family: inherit;
+	vertical-align: baseline;
+	margin: 0;
+	padding: 0;
+	padding: .6ex 3px;
+}
+
+body {
+	line-height: 1.6;
+	font-family: Helvetica, Arial, sans-serif;
+	background: #fff;
+	font-size: 13px;
+}
+
+a {
+	color: #08c;
+}
+
+h1 {
+	font-size: 250%;
+	margin-bottom: 1ex;
+}
+
+h2 {
+	font-size: 120%;
+	font-weight: bold;
+	color: #333;
+	margin-top: 4ex;
+}
+
+p {
+	text-align: justify;
+}
+
+ul {
+	list-style: none;
+}
+
+textarea, input[type=text], input[type=password] {
+  border: 1px solid #999;
+}
+
+#wrapper {
+	width: 980px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+
+.hidden {
+	display: block;
+	width: 1px;
+	height: 1px;
+	position: absolute;
+	top: -1000px;
+	left: -1000px;
+}
+
+li.right {
+	float: right !important;
+}

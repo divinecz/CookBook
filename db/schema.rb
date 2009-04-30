@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090324200705) do
+ActiveRecord::Schema.define(:version => 20090426155252) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -22,6 +22,16 @@ ActiveRecord::Schema.define(:version => 20090324200705) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "favorite_recipes", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "recipe_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "favorite_recipes", ["recipe_id"], :name => "index_favorite_recipes_on_recipe_id"
+  add_index "favorite_recipes", ["user_id", "recipe_id"], :name => "index_favorite_recipes_on_user_id_and_recipe_id", :unique => true
 
   create_table "ingredient_types", :force => true do |t|
     t.string   "name"
@@ -58,6 +68,7 @@ ActiveRecord::Schema.define(:version => 20090324200705) do
     t.integer  "ingredient_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "raw"
   end
 
   create_table "recipes", :force => true do |t|
@@ -66,7 +77,13 @@ ActiveRecord::Schema.define(:version => 20090324200705) do
     t.integer  "course_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "next_version_id"
+    t.integer  "based_on_id"
   end
+
+  add_index "recipes", ["based_on_id"], :name => "index_recipes_on_based_on_id"
+  add_index "recipes", ["next_version_id"], :name => "index_recipes_on_next_version_id"
 
   create_table "users", :force => true do |t|
     t.string   "login"
@@ -81,6 +98,7 @@ ActiveRecord::Schema.define(:version => 20090324200705) do
     t.string   "current_login_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "email"
   end
 
 end

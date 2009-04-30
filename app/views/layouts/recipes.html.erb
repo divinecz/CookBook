@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+<head>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<title><%= controller.controller_name %>: <%= controller.action_name %></title>
+	<%= stylesheet_link_tag 'global', 'pages' %>
+	<%= javascript_include_tag :defaults %>
+</head>
+<body class="<%= controller.action_name %>"<%= onload_focus %>>
+
+<div id="wrapper">
+	<% flash.each do |key, msg| -%>
+		<%#= content_tag :p, msg, :class => "flash #{key}" %>
+	<% end -%>
+	
+	<div id="left-side" class="side">
+		<h1>O vaření.cz</h1>
+
+		<%= render :partial => 'recipe_search' %>
+
+		<div class="recipes-block">
+			<% unless @recipes.blank? -%>
+				<h2>Recepty z mé kuchařky</h2>
+			<% end -%>
+			<ul class="recipes" id="my_recipes">
+				<%= render :partial => 'recipe_link', :collection => @recipes %>
+			</ul>
+		</div>
+
+		<hr class="hidden" />
+
+		<div class="recipes-block">
+			<h2>Nové recepty</h2>
+			<ul class="recipes" id="new_recipes">
+				<%= render :partial => 'recipe_link', :collection => Recipe.new_recipes((12-@recipes.length)/1.7) %>
+			</ul>
+		</div>
+
+		<div class="recipes-block">
+			<h2>Oblíbené recepty</h2>
+			<ul class="recipes" id="popular_recipes">
+				<%= render :partial => 'recipe_link', :collection => Recipe.popular_recipes((12-@recipes.length)/1.7) %>
+			</ul>
+		</div>
+	</div>
+
+	<hr class="hidden" />
+
+	<div id="right-side" class="side">
+		<h2 class="hidden">Hlavní menu</h2>
+		<ul id="main-menu">
+			<li><%= link_to_remote "Vytvořit recept", :url => new_recipe_path, :method => :get %></li>
+			<li><%= link_to "Blog", "#" %></li>
+			<li><%= link_to "Odhlásit", user_session_path, :method => :delete %></li>
+			<li class="right"><%= current_user.email %></li>
+		</ul>
+
+		<div id="content">
+			<%= yield %>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

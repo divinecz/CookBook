@@ -1,0 +1,4 @@
+# page[:recipe_menu].fade
+page[:recipe_menu].replace :partial => 'recipes/recipe_menu', :locals => { :recipe => @recipe }
+page[:recipe_search_sender].value = rand
+# page[:recipe_menu].appear

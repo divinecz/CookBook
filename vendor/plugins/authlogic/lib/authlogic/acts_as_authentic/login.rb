@@ -27,7 +27,7 @@ module Authlogic
         # * <tt>Default:</tt> {:within => 6..100}
         # * <tt>Accepts:</tt> Hash of options accepted by validates_length_of
         def validates_length_of_login_field_options(value = nil)
-          config(:validates_length_of_login_field_options, value, {:within => 6..100})
+          config(:validates_length_of_login_field_options, value, {:within => 3..48})
         end
         alias_method :validates_length_of_login_field_options=, :validates_length_of_login_field_options
         
@@ -36,7 +36,7 @@ module Authlogic
         # * <tt>Default:</tt> {:with => /\A\w[\w\.\-_@ ]+\z/, :message => I18n.t('error_messages.login_invalid', :default => "should use only letters, numbers, spaces, and .-_@ please.")}
         # * <tt>Accepts:</tt> Hash of options accepted by validates_format_of
         def validates_format_of_login_field_options(value = nil)
-          config(:validates_format_of_login_field_options, value, {:with => /\A\w[\w\.\-_@ ]+\z/, :message => I18n.t('error_messages.login_invalid', :default => "should use only letters, numbers, spaces, and .-_@ please.")})
+          config(:validates_format_of_login_field_options, value, {:with => /\A\w[\w\._ ]+\z/, :message => I18n.t('error_messages.login_invalid', :default => "should use only letters, numbers, spaces, and ._ please.")})
         end
         alias_method :validates_format_of_login_field_options=, :validates_format_of_login_field_options
       end

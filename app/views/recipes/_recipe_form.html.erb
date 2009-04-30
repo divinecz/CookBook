@@ -1,0 +1,14 @@
+<h2><%= title rescue "Vytvoření nového receptu" %></h2>
+
+<% remote_form_for @recipe, :html => { :class => 'wide_form' } do |f| %>
+	<p><%= f.label :name, "Název receptu" %>
+	<%= f.text_field :name, :class => 'big' %></p>
+	
+	<p><%= f.label :raw_ingredients, 'Ingredience<span class="minor"> — Každá na vlastní řádek (oddělené entrem)</span>' %>
+	<%= f.text_area :raw_ingredients, :rows => [10, @recipe.recipe_ingredients.length+1].max, :cols => 60 %></p>
+	
+	<p><%= f.label :directions, "Postup" %>
+	<%= f.text_area :directions, :rows => [8, @recipe.directions_rows_count+1].max, :cols => 60 %></p>
+	
+	<%= f.submit "Uložit recept", :disable_with => 'Ukládám...' %>
+<% end -%>

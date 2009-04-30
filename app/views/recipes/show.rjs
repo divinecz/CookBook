@@ -1,0 +1,1 @@
+page[:content].replace_html :partial => @recipe

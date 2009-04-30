@@ -1,0 +1,157 @@
+hr {
+	height: 1px; 
+	color: #aaa; 
+	background-color: #aaa; 
+	border: 0px solid #aaa;
+	margin-top: 3ex;
+}
+
+hr + p {
+	/*color: rgba(255,255,255,.4);*/
+}
+
+form {
+	margin-top: 3ex;
+}
+
+.wide_form label, .wide_form input[type=submit] {
+	display: block;
+	margin-top: 1.5ex;
+	width: 444px;
+}
+
+.wide_form input, .wide_form textarea {
+	width: 436px;
+	display: block;
+}
+
+#wrapper {
+	background-color: #f3f3f3;
+}
+
+.side {
+	width: 50%;
+	padding: 3ex 0;
+}
+
+.side > * {
+	margin-left: 5%;
+	margin-right: 5%;
+}
+
+#left-side {
+	float: left;
+	border-right: 1px solid #e6e6e6;
+}
+
+#right-side {
+	margin-left: 50%;
+	border-left: 1px solid #e6e6e6;
+}
+
+#right-side h1 {
+	font-size: 200%;
+	line-height: 1.4;
+	margin-bottom: .9ex;
+}
+
+ul#main-menu {
+	height: 3.2ex;
+	margin-bottom: 2ex;
+}
+
+ul#main-menu li {
+	float: left;
+	margin-right: 1em;
+	line-height: 1;
+	padding: .6ex 0;
+}
+
+ul#main-menu li#search {
+	float: right;
+	margin: 0;
+	padding: 0;
+}
+
+ul#main-menu li input {
+	border: 1px solid #ccc;
+	color: #666;
+	background-color: #f9f9f9;
+	margin-top: -0.3ex;
+}
+
+#abstract {
+	/*border: 1px solid #d6dde5;*/
+	padding: 3ex 2em;
+	background-color: #2E415E;
+	margin: 0;
+	color: #bcd0ea;
+}
+
+#reg {
+	background-color: #2C6349;
+	padding: 3ex 2em;
+	margin: 0;
+	color: #c5dec3;
+}
+
+#reg a {
+	color: inherit;
+}
+
+#reg h2 {
+	margin-top: 0;
+	margin-bottom: 1ex;
+	color: #e1efe0;
+}
+
+#reg input {
+	font-size: 120%;
+}
+
+#reg input#user_email {
+	background: #f9f9f9;
+	color: #333;
+	border: 1px solid #666;
+	width: 312px;
+}
+
+p.date {
+	color: #999;
+	margin-bottom: 1.4ex;
+}
+
+input.big {
+	font-size: 120%;
+}
+
+label .minor {
+	color: #888;
+}
+
+ul.menu {
+	height: 3ex;
+}
+
+ul.menu li {
+	float: left;
+	padding: .2ex .5em;
+	background-color: #ececec;
+	border: 1px solid #e6e6e6;
+	margin-right: .8em;
+}
+
+ul.menu a {
+	text-decoration: none;
+	color: #777;
+}
+
+ul.menu a:hover {
+	text-decoration: underline;
+	color: #333;
+}
+
+ul.menu a.warning:hover {
+	text-decoration: underline;
+	color: #c33;
+}
