@@ -47,13 +47,11 @@ Rails::Initializer.run do |config|
 
   config.action_mailer.delivery_method = :smtp
   
-  config.action_mailer.default_charset = "utf-8"
-  
-  config.action_mailer.server_settings = { 
+  config.action_mailer.smtp_settings = { 
   :address => "omega.polomino.cz", 
   :port => 25, 
   :domain => "ovareni.cz", 
-  :authentication => :login, 
+  :authentication => :plain, 
   :user_name => "ovareni.cz_poslicek", 
   :password => "noreply"
   } 
