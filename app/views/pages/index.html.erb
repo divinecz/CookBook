@@ -26,7 +26,7 @@
 		<li><%= link_to "Recepty", "#" %></li>
 		<li><%= link_to "Blog", "#" %></li>
 		<li><%= link_to "O projektu", "#" %></li>
-		<li><%= link_to "Přihlášení", "#" %></li>
+		<li><%= link_to "Přihlášení", login_path %></li>
 		<li id="search"><input type="text" value="rychlé hledání receptu..."/></li>
 	</ul>
 	
@@ -41,7 +41,7 @@
 			<%= f.submit "Vytvořit", :disable_with => 'Vytvořit' %>
 		<% end -%>
 		<hr />
-		<p>nebo se <%= link_to "přihlášte", new_user_session_path %> ke své kuchařce.</p>
+		<p>nebo se <%= link_to "přihlášte", login_path %> ke své kuchařce.</p>
 	</div>
 	
 	<hr class="hidden" />
