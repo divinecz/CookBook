@@ -45,7 +45,7 @@ Rails::Initializer.run do |config|
   # Run "rake -D time" for a list of tasks for finding time zone names. Comment line to use default local time.
   config.time_zone = 'UTC'
 
-  config.active_record.observers = :user_observer
+  # config.active_record.observers = :user_observer
 
   config.action_mailer.delivery_method = :smtp
   
