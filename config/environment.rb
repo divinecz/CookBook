@@ -45,15 +45,17 @@ Rails::Initializer.run do |config|
   # Run "rake -D time" for a list of tasks for finding time zone names. Comment line to use default local time.
   config.time_zone = 'UTC'
 
+  config.active_record.observers = :user_observer
+
   config.action_mailer.delivery_method = :smtp
   
   config.action_mailer.smtp_settings = { 
-  :address => "omega.polomino.cz", 
-  :port => 25, 
-  :domain => "ovareni.cz", 
-  :authentication => :plain, 
-  :user_name => "ovareni.cz_poslicek", 
-  :password => "noreply"
+    :address => "omega.polomino.cz", 
+    :port => 25, 
+    :domain => "ovareni.cz", 
+    :authentication => :plain, 
+    :user_name => "ovareni.cz_poslicek", 
+    :password => "noreply"
   } 
   
 
