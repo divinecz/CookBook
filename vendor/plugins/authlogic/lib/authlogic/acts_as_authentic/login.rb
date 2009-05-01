@@ -9,7 +9,7 @@ module Authlogic
         # * <tt>Default:</tt> :login or :username, if they exist
         # * <tt>Accepts:</tt> Symbol
         def login_field(value = nil)
-          config(:login_field, value, first_column_to_exist(nil, :login, :username))
+          config(:login_field, value, first_column_to_exist(nil, :email, :username))
         end
         alias_method :login_field=, :login_field
         

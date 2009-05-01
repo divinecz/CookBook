@@ -5,7 +5,7 @@ class UserSessionsController < ApplicationController
   
   
   def new
-    @user_session = UserSession.new
+    @user_session = UserSession.new :email => '@'
   end
 
   def create
