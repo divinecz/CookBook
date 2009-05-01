@@ -31,7 +31,7 @@ class Recipe < ActiveRecord::Base
   end
   
   def self.popular_recipes(limit = 4)
-    scoped_by_next_version_id(nil).find(:all).sort_by(&:popularity)[-limit..-1].reverse
+    scoped_by_next_version_id(nil).find(:all).sort_by(&:popularity)[-limit..-1].try(:reverse)
   end
   
   def self.new_recipes(limit = 4)
