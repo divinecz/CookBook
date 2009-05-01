@@ -14,7 +14,8 @@ class UsersController < ApplicationController
       flash[:notice] = "Account registered!"
       redirect_back_or_default root_url
     else
-      render :action => :new
+      flash[:error] = "Chyba!"
+      render 'pages/index'
     end
   end
 

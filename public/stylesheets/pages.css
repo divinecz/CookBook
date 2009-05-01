@@ -110,9 +110,6 @@ ul#main-menu li input {
 }
 
 #reg input#user_email {
-	background: #f9f9f9;
-	color: #333;
-	border: 1px solid #666;
 	width: 312px;
 }
 
