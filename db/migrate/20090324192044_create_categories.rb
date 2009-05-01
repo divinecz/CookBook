@@ -1,6 +1,6 @@
 class CreateCategories < ActiveRecord::Migration
   def self.up
-    create_table :categories do |t|
+    create_table :categories, :options => 'DEFAULT CHARSET=UTF8' do |t|
       t.string :name
       t.timestamps
     end

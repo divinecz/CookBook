@@ -1,6 +1,6 @@
 class CreateIngredientTypes < ActiveRecord::Migration
   def self.up
-    create_table :ingredient_types do |t|
+    create_table :ingredient_types, :options => 'DEFAULT CHARSET=UTF8' do |t|
       t.string :name
       t.timestamps
     end

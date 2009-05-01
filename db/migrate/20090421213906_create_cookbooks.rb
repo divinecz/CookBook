@@ -1,6 +1,6 @@
 class CreateCookbooks < ActiveRecord::Migration
   def self.up
-    create_table :favorite_recipes do |t|
+    create_table :favorite_recipes, :options => 'DEFAULT CHARSET=UTF8' do |t|
       t.integer :user_id
       t.integer :recipe_id
       t.timestamps
