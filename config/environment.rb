@@ -47,7 +47,7 @@ Rails::Initializer.run do |config|
 
   config.active_record.observers = :user_observer
 
-  # config.action_mailer.delivery_method = :smtp
+  config.action_mailer.delivery_method = :sendmail
   
   # config.action_mailer.smtp_settings = { 
   #   :address => "omega.polomino.cz", 
