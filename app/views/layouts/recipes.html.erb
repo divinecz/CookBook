@@ -21,9 +21,7 @@
 		<%= render :partial => 'recipe_search' %>
 
 		<div class="recipes-block">
-			<% unless @recipes.blank? -%>
-				<h2>Recepty z mé kuchařky</h2>
-			<% end -%>
+			<h2>Recepty z mé kuchařky</h2>
 			<ul class="recipes" id="my_recipes">
 				<%= render :partial => 'recipe_link', :collection => @recipes %>
 			</ul>
@@ -39,7 +37,7 @@
 		</div>
 
 		<div class="recipes-block">
-			<h2>Oblíbené recepty</h2>
+			<h2>Nejoblíbenější recepty</h2>
 			<ul class="recipes" id="popular_recipes">
 				<%= render :partial => 'recipe_link', :collection => Recipe.popular_recipes((12-@recipes.length)/1.7) %>
 			</ul>

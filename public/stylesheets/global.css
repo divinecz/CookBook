@@ -70,6 +70,10 @@ textarea, input[type=text], input[type=password] {
 	left: -1000px;
 }
 
+.invis {
+  display: none;
+}
+
 li.right {
 	float: right !important;
 }
@@ -78,7 +82,7 @@ li.right {
 	display: inline;
 }
 
-.fieldWithErrors input {
+.fieldWithErrors input, .fieldWithErrors textarea {
 	background-color: #ffdada;
 	border: 1px solid #ff6666;
 }
