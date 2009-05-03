@@ -1,6 +1,6 @@
 class Recipe < ActiveRecord::Base
   belongs_to :user
-  has_many :recipe_ingredients, :dependent => :destroy
+  has_many :recipe_ingredients, :dependent => :destroy, :order => 'id'
   has_many :ingredients, :through => :recipe_ingredients
   has_many :favorite_recipes, :dependent => :destroy
   belongs_to :next_version, :class_name => "Recipe", :foreign_key => "next_version_id"
