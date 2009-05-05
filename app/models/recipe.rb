@@ -14,25 +14,23 @@ class Recipe < ActiveRecord::Base
   alias :owner :user
   
   def self.popular_search(recipe, limit = 4)
-    pop = find(:all, :conditions => ['name like ?', "%#{recipe[:name].gsub(' ', '%')}%"], :joins => :favorite_recipes).uniq.sort_by(&:popularity)  # TODO: Warning: toto by mohlo byt v budoucnu pomale
-    pop[[-limit, -pop.size].max..-1].reverse
+    with_scope :find => { :conditions => ['name like ?', "%#{recipe[:name].gsub(' ', '%')}%"] } do
+      popular_recipes(limit)
+    end
   end
   
   def self.new_search(recipe, limit = 4)
-    scoped_by_next_version_id(nil).find :all, :conditions => ['name like ?', "%#{recipe[:name].gsub(' ', '%')}%"], :order => 'created_at DESC', :limit => limit
+    with_scope :find => { :conditions => ['name like ?', "%#{recipe[:name].gsub(' ', '%')}%"] } do
+      new_recipes(limit)
+    end
   end
   
   def self.search(recipe, limit = 8)
     find :all, :conditions => ['name like ?', "%#{recipe[:name].gsub(' ', '%')}%"], :include => :favorite_recipes, :order => 'favorite_recipes.id DESC', :limit => limit
   end
   
-  def self.all_with_no_favorite
-    all.select{ |recipe| recipe.favorite_recipes.empty? }
-  end
-  
   def self.popular_recipes(limit = 4)
-    pop = find(:all, :joins => :favorite_recipes).uniq.sort_by(&:popularity)
-    pop[[-limit, -pop.size].max..-1].reverse
+    find(:all, :conditions => ["favorite_recipes_count > 0"], :order => 'favorite_recipes_count DESC', :limit => limit)
   end
   
   def self.new_recipes(limit = 4)

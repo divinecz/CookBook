@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090426155252) do
+ActiveRecord::Schema.define(:version => 20090505081050) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(:version => 20090426155252) do
     t.integer  "user_id"
     t.integer  "next_version_id"
     t.integer  "based_on_id"
+    t.integer  "favorite_recipes_count", :default => 0
   end
 
   add_index "recipes", ["based_on_id"], :name => "index_recipes_on_based_on_id"
