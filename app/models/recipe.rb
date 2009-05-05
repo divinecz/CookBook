@@ -14,12 +14,12 @@ class Recipe < ActiveRecord::Base
   alias :owner :user
   
   def self.popular_search(recipe, limit = 4)
-    pop = scoped_by_next_version_id(nil).find(:all, :conditions => ['name like ?', "%#{recipe[:name].gsub(' ', '%')}%"], :include => :favorite_recipes).sort_by(&:popularity)
+    pop = find(:all, :conditions => ['name like ?', "%#{recipe[:name].gsub(' ', '%')}%"], :joins => :favorite_recipes).uniq.sort_by(&:popularity)  # TODO: Warning: toto by mohlo byt v budoucnu pomale
     pop[[-limit, -pop.size].max..-1].reverse
   end
   
   def self.new_search(recipe, limit = 4)
-    scoped_by_next_version_id(nil).find :all, :conditions => ['name like ?', "%#{recipe[:name].gsub(' ', '%')}%"], :order => 'id DESC', :limit => limit
+    scoped_by_next_version_id(nil).find :all, :conditions => ['name like ?', "%#{recipe[:name].gsub(' ', '%')}%"], :order => 'created_at DESC', :limit => limit
   end
   
   def self.search(recipe, limit = 8)
@@ -31,12 +31,12 @@ class Recipe < ActiveRecord::Base
   end
   
   def self.popular_recipes(limit = 4)
-    pop = scoped_by_next_version_id(nil).find(:all).sort_by(&:popularity)
+    pop = find(:all, :joins => :favorite_recipes).uniq.sort_by(&:popularity)
     pop[[-limit, -pop.size].max..-1].reverse
   end
   
   def self.new_recipes(limit = 4)
-    scoped_by_next_version_id(nil).find :all, :order => 'id DESC', :limit => limit
+    scoped_by_next_version_id(nil).find :all, :order => 'created_at DESC', :limit => limit
   end
 
   def popularity

@@ -34,8 +34,10 @@ class RecipesController < ApplicationController
     
     if old_recipe == new_recipe
       @recipe = old_recipe
-    elsif new_recipe.save
+    elsif new_recipe.valid?
       if old_recipe.owner == current_user
+        new_recipe.created_at = old_recipe.created_at
+        new_recipe.save
         old_recipe.next_version = new_recipe
         old_recipe.save
       else
