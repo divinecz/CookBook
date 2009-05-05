@@ -30,7 +30,7 @@ class Recipe < ActiveRecord::Base
   end
   
   def self.popular_recipes(limit = 4)
-    find(:all, :conditions => ["favorite_recipes_count > 0"], :order => 'favorite_recipes_count DESC', :limit => limit)
+    find(:all, :conditions => ["favorite_recipes_count > 0"], :order => 'favorite_recipes_count DESC, id DESC', :limit => limit) # TODO: id DESC se muze smazat, pokud bude zbytecne zdrzovat
   end
   
   def self.new_recipes(limit = 4)
