@@ -1,1 +1,2 @@
 page[:content].replace_html :partial => 'recipe_form', :locals => { :title => 'Úprava receptu' }
+page[:esc_a].focus

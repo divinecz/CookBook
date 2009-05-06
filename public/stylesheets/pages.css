@@ -67,6 +67,10 @@ ul#main-menu li {
 	padding: .6ex 0;
 }
 
+ul#main-menu li.right {
+	margin-right: 0;
+}
+
 ul#main-menu li#search {
 	float: right;
 	margin: 0;
@@ -132,18 +136,21 @@ ul.menu {
 
 ul.menu li {
 	float: left;
-	padding: .2ex .5em;
-	background-color: #ececec;
-	border: 1px solid #e6e6e6;
+}
+
+ul.menu li a {
 	margin-right: .8em;
 }
 
-ul.menu a {
+ul.menu li a, p#esc a {
+	padding: .6ex .6em;
+	background-color: #ececec;
+	border: 1px solid #e6e6e6;
 	text-decoration: none;
 	color: #777;
 }
 
-ul.menu a:hover {
+ul.menu a:hover, p#esc a:hover {
 	text-decoration: underline;
 	color: #333;
 }
@@ -151,4 +158,8 @@ ul.menu a:hover {
 ul.menu a.warning:hover {
 	text-decoration: underline;
 	color: #c33;
+}
+
+p#esc {
+	float: right;
 }
