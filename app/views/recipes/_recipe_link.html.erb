@@ -1,1 +1,1 @@
-<%= content_tag :li, link_to_remote(recipe_link, :url => recipe_link, :method => :get) %>
+<%= content_tag :li, link_to_remote(recipe_link, :url => recipe_link, :method => :get, :html => { :href => recipe_path(recipe_link) }) %>

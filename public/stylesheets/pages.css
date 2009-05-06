@@ -151,12 +151,17 @@ ul.menu li a, p#esc a {
 }
 
 ul.menu a:hover, p#esc a:hover {
-	text-decoration: underline;
+	background-color: #e6e6e6;
+	border-color: #e0e0e0;
 	color: #333;
 }
 
+ul.menu a:active, p#esc a:active {
+	background-color: #dcdcdc;
+	border-color: #d0d0d0;
+}
+
 ul.menu a.warning:hover {
-	text-decoration: underline;
 	color: #c33;
 }
 

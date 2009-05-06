@@ -1,4 +1,7 @@
-<p id="esc"><%= link_to_remote "Zpět", :url => @recipe, :method => :get, :html => { :id => 'esc_a', :title => 'Vrátit se k receptu.' } %></p>
+<%- if (recipe rescue false) -%>
+	<p id="esc"><%= link_to_remote "Zpět", :url => recipe, :method => :get, :html => { :id => 'esc_a', :title => 'Vrátit se zpět k receptu.', :href => recipe_path(recipe) } %></p>
+<%- end -%>
+
 <h2><%= title rescue "Vytvoření nového receptu" %></h2>
 
 <% remote_form_for @recipe, :html => { :class => 'wide_form' } do |f| %>

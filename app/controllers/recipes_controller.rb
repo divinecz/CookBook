@@ -9,23 +9,27 @@ class RecipesController < ApplicationController
   end
   
   def index
-    @recipes = current_user.my_recipes
+    load_recipes
     if @recipes.empty?
-      @recipe = Recipe.new
-      @focus_e = 0
-      @focus_f = 1
+      new
       render :new
     else
       @recipe = @recipes.first
-      @focus_e = 0
+      show
       render :show
     end
   end
   
   def new
     @recipe = Recipe.new
-    # @focus_f = 1
-    # @focus_e = 0
+    @last_recipe = FavoriteRecipe.scoped_by_user_id(current_user.id).last.try(:recipe)
+    respond_to do |wants|
+      wants.html { 
+        load_recipes
+        @focus_f = 1
+        @focus_e = 0 }
+      wants.js
+    end
   end
   
   def update
@@ -34,6 +38,11 @@ class RecipesController < ApplicationController
     
     if old_recipe == new_recipe
       @recipe = old_recipe
+      
+      respond_to do |wants|
+        wants.html { load_recipes ; redirect_to recipe_path(@recipe) }
+        wants.js
+      end
     elsif new_recipe.valid?
       if old_recipe.owner == current_user
         new_recipe.created_at = old_recipe.created_at
@@ -47,6 +56,11 @@ class RecipesController < ApplicationController
       current_user.favorite_recipes.find_by_recipe_id(old_recipe).destroy
       current_user.recipes << new_recipe
       @recipe = new_recipe
+      
+      respond_to do |wants|
+        wants.html { load_recipes ; redirect_to recipe_path(@recipe) }
+        wants.js
+      end
     else
       old_recipe.attributes = params[:recipe]
       @recipe = old_recipe
@@ -56,18 +70,45 @@ class RecipesController < ApplicationController
   
   def edit
     @recipe = Recipe.find params[:id]
+    respond_to do |wants|
+      wants.html { load_recipes }
+      wants.js
+    end
   end
   
   def show
-    @recipe = Recipe.find params[:id]
+    @recipe ||= Recipe.find params[:id]
+    @favorite_recipe = current_user.favorite_recipe?(@recipe)
+    respond_to do |wants|
+      wants.html {
+        load_recipes
+        @focus_e = 0 }
+      wants.js
+    end
   end
   
   def create
     @recipe = Recipe.new params[:recipe].merge(:user_id => current_user.id)
     if @recipe.save
       current_user.recipes << @recipe
+      
+      respond_to do |wants|
+        wants.html { redirect_to @recipe }
+        wants.js
+      end
     else
+      respond_to do |wants|
+        wants.html { load_recipes }
+        wants.js
+      end
+      
       render :new
     end
+  end
+
+  private
+  
+  def load_recipes
+    @recipes ||= current_user.my_recipes
   end
 end 
