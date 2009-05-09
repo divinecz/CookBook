@@ -181,3 +181,9 @@ ul.menu .warning:hover {
 p#esc {
 	float: right;
 }
+
+span.author {
+	display: block;
+	text-align: right;
+	font-style: italic;
+}

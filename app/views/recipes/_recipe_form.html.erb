@@ -1,18 +1,18 @@
 <%- if (recipe rescue false) -%>
-	<p id="esc"><%= link_to_remote "Zpět", :url => recipe, :method => :get, :html => { :id => 'esc_a', :title => 'Vrátit se zpět k receptu.', :href => recipe_path(recipe) } %></p>
+	<p id="esc"><%= link_to_remote "Zpět", :url => recipe, :method => :get, :html => { :id => 'esc_a', :title => 'Vrátit se zpět k receptu.', :href => recipe_path(recipe), :tabindex => 1 } %></p>
 <%- end -%>
 
 <h2><%= title rescue "Vytvoření nového receptu" %></h2>
 
 <% remote_form_for @recipe, :html => { :class => 'wide_form' } do |f| %>
 	<p><%= f.label :name, "Název receptu" %>
-	<%= f.text_field :name, :class => 'big' %></p>
+	<%= f.text_field :name, :class => 'big', :tabindex => 2 %></p>
 	
 	<p><%= f.label :raw_ingredients, 'Ingredience<span class="minor"> — Každá na vlastní řádek (oddělené entrem)</span>' %>
-	<%= f.text_area :raw_ingredients, :rows => [10, @recipe.recipe_ingredients.length+1].max, :cols => 60 %></p>
+	<%= f.text_area :raw_ingredients, :rows => [10, @recipe.recipe_ingredients.length+1].max, :cols => 60, :tabindex => 3 %></p>
 	
 	<p><%= f.label :directions, "Postup" %>
-	<%= f.text_area :directions, :rows => [8, @recipe.directions_rows_count+1].max, :cols => 60 %></p>
+	<%= f.text_area :directions, :rows => [8, @recipe.directions_rows_count+1].max, :cols => 60, :tabindex => 4 %></p>
 	
-	<%= f.submit "Uložit recept", :disable_with => 'Ukládám...' %>
+	<%= f.submit "Uložit recept", :disable_with => 'Ukládám...', :tabindex => 5 %>
 <% end -%>

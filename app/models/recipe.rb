@@ -74,6 +74,6 @@ class Recipe < ActiveRecord::Base
   end
   
   def to_s
-    "#{name} (#{owner})"
+    name
   end
 end
