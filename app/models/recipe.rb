@@ -13,6 +13,10 @@ class Recipe < ActiveRecord::Base
   
   alias :owner :user
   
+  def my_favorite?
+    @my_favorite ||= UserSession.current_user.favorite_recipes.find_by_recipe_id(self)
+  end
+  
   def self.popular_search(recipe, limit = 4)
     with_scope :find => { :conditions => ['name like ?', "%#{recipe[:name].gsub(' ', '%')}%"] } do
       popular_recipes(limit)

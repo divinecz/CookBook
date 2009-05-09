@@ -10,9 +10,9 @@ hr + p {
 	/*color: rgba(255,255,255,.4);*/
 }
 
-form {
-	margin-top: 3ex;
-}
+/*form {
+  margin-top: 3ex;
+}*/
 
 .wide_form label, .wide_form input[type=submit] {
 	display: block;
@@ -20,7 +20,7 @@ form {
 	width: 444px;
 }
 
-.wide_form input, .wide_form textarea {
+.wide_form input[type=text], .wide_form textarea {
 	width: 436px;
 	display: block;
 }
@@ -136,32 +136,45 @@ ul.menu {
 
 ul.menu li {
 	float: left;
-}
-
-ul.menu li a {
 	margin-right: .8em;
 }
 
-ul.menu li a, p#esc a {
-	padding: .6ex .6em;
+ul.menu li, p#esc {
 	background-color: #ececec;
 	border: 1px solid #e6e6e6;
 	text-decoration: none;
-	color: #777;
 }
 
-ul.menu a:hover, p#esc a:hover {
+ul.menu li a, ul.menu form > input, p#esc a {
+	padding: 5px .6em;
+	display: block;
+	text-decoration: none;
+	line-height: 1;
+	color: #777;
+	cursor: pointer;
+}
+
+ul.menu input {
+	border: none;
+	background: none;
+}
+
+ul.menu li:hover, p#esc:hover {
 	background-color: #e6e6e6;
 	border-color: #e0e0e0;
+}
+
+ul.menu li:hover *, p#esc:hover * {
 	color: #333;
 }
 
-ul.menu a:active, p#esc a:active {
+ul.menu li:active, p#esc a:active {
 	background-color: #dcdcdc;
 	border-color: #d0d0d0;
+	color: #000;
 }
 
-ul.menu a.warning:hover {
+ul.menu .warning:hover {
 	color: #c33;
 }
 

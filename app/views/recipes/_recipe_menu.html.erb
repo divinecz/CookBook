@@ -1,9 +1,18 @@
 <ul class="menu" id="recipe_menu">
-	<% if @favorite_recipe -%>
+	<% if recipe.my_favorite? -%>
 		<%= content_tag :li, link_to_remote('Upravit', :url => edit_recipe_path(recipe), :method => :get, :html => { :title => 'Upravit recept.', :href => edit_recipe_path(recipe) }) %>
 		<%= content_tag :li, link_to('Poslat', "#", :title => 'Poslat recept známému.') %>
-		<%= content_tag :li, link_to_remote('Odstranit', :url => @favorite_recipe, :method => 'delete', :html => { :class => 'warning', :title => 'Odstranit recept z mé kuchařky.' }) %>
+		<li>
+			<% remote_form_for recipe.my_favorite?, :html => { :method => :delete } do |f| -%>
+				<%= f.submit "Odstranit", :class => 'warning', :title => 'Odstranit recept z mé kuchařky.' %>
+			<% end -%>
+		</li>
 	<% else -%>
-		<%= content_tag :li, link_to_remote('Přidat recept do mé kuchařky', :url => favorite_recipes_path(:recipe_id => recipe.id), :method => 'post', :html => { :class => 'add', :title => 'Přidat recept do mé kuchařky.' }) %>
+		<li>
+			<% remote_form_for FavoriteRecipe.new do |f| -%>
+				<%= f.hidden_field :recipe_id, :value => recipe.id, :class => 'hidden' %>
+				<%= f.submit "Přidat recept do mé kuchařky" %>
+			<% end -%>
+		</li>
 	<% end -%>
 </ul>

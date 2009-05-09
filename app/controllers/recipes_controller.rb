@@ -78,7 +78,6 @@ class RecipesController < ApplicationController
   
   def show
     @recipe ||= Recipe.find params[:id]
-    @favorite_recipe = current_user.favorite_recipe?(@recipe)
     respond_to do |wants|
       wants.html {
         load_recipes

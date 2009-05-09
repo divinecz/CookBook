@@ -51,7 +51,7 @@
 		<ul id="main-menu">
 			<li><%= link_to_remote "Vytvořit recept", :url => new_recipe_path, :method => :get, :html => { :href => new_recipe_path } %></li>
 			<li><%= link_to "Blog", "#" %></li>
-			<li><%= link_to "Odhlásit", user_session_path, :method => :delete %></li>
+			<li><%= link_to "Odhlásit", logout_path %></li>
 			<li class="right"><%= current_user.email %></li>
 		</ul>
 
