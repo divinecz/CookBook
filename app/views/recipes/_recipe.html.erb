@@ -3,9 +3,9 @@
 
 <h2>Ingredience</h2>
 
-<ul>
+<ul class="ingredients">
 <% recipe.recipe_ingredients.each do |recipe_ingredient| -%>
-	<%= content_tag :li, h(recipe_ingredient.raw) %>
+	<%= content_tag :li, render(:partial => recipe_ingredient) %>
 <% end -%>
 </ul>
 

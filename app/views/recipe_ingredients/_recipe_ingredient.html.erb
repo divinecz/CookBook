@@ -1,0 +1,7 @@
+<%- if recipe_ingredient.ingredient_id.nil? -%>
+<span title="ingredienci se nepodařilo rozpoznat. :(">:(</span>
+<%- else -%> 
+<span title="<%= recipe_ingredient.ingredient %>">:)</span>
+<% end -%>
+
+<%= h(recipe_ingredient.raw) %>

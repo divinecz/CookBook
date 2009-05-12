@@ -1,0 +1,10 @@
+<table>
+<%- @recipe_ingredients.each do |r| -%>
+<tr>
+	<td><%= r.amount %></td>
+	<td><%= r.units %></td>
+	<td><%= r.ingredient %></td>
+	<td><%= r.raw %></td>
+</tr>
+<% end -%>
+</table>

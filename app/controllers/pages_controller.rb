@@ -6,4 +6,8 @@ class PagesController < ApplicationController
     @user = User.new :email => '@'
   end
 
+  def parser
+    @recipe_ingredients = RecipeIngredient.all.collect &:parse!
+  end
+
 end

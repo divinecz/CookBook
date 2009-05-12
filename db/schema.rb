@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090505081050) do
+ActiveRecord::Schema.define(:version => 20090512084524) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -52,7 +52,14 @@ ActiveRecord::Schema.define(:version => 20090505081050) do
     t.integer  "ingredient_type_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "parent_id"
+    t.integer  "lft"
+    t.integer  "rgt"
   end
+
+  add_index "ingredients", ["lft"], :name => "index_ingredients_on_lft", :unique => true
+  add_index "ingredients", ["parent_id"], :name => "index_ingredients_on_parent_id"
+  add_index "ingredients", ["rgt"], :name => "index_ingredients_on_rgt", :unique => true
 
   create_table "recipe_category", :force => true do |t|
     t.integer  "recipe_id"
@@ -85,6 +92,14 @@ ActiveRecord::Schema.define(:version => 20090505081050) do
 
   add_index "recipes", ["based_on_id"], :name => "index_recipes_on_based_on_id"
   add_index "recipes", ["next_version_id"], :name => "index_recipes_on_next_version_id"
+
+  create_table "user_ingredients", :force => true do |t|
+    t.string   "name",          :default => "", :null => false
+    t.integer  "used_count",    :default => 0
+    t.integer  "ingredient_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "login"
