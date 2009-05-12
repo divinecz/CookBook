@@ -11,7 +11,7 @@ class Ingredient < ActiveRecord::Base
   after_create :create_user_ingredient
   
   def create_user_ingredient
-    UserIngredient.create :name => name.chars.normalize(:kd).to_s.gsub(/[^\x00-\x7F]/, '').downcase, :ingredient_id => id
+    UserIngredient.create :name => Iconv.new('ascii//translit', 'utf-8').iconv(name).downcase, :ingredient_id => id
   end
   
   def to_s
