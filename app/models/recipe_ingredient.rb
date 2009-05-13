@@ -4,5 +4,6 @@ class RecipeIngredient < ActiveRecord::Base
   
   def parse!
     update_attributes Parser.decode(raw)
+    self
   end
 end
