@@ -1,6 +1,6 @@
 class CreateUserIngredients < ActiveRecord::Migration
   def self.up
-    create_table :user_ingredients do |t|
+    create_table :user_ingredients, :options => 'DEFAULT CHARSET=UTF8' do |t|
       t.string :name, :null => false
       t.integer :used_count, :default => 0
       t.integer :ingredient_id
