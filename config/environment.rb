@@ -47,16 +47,16 @@ Rails::Initializer.run do |config|
 
   config.active_record.observers = :user_observer
 
-  # config.action_mailer.delivery_method = :smtp
-  # 
-  # config.action_mailer.smtp_settings = { 
-  #   :address => "omega.polomino.cz", 
-  #   :port => 25, 
-  #   :domain => "ovareni.cz", 
-  #   :authentication => :plain, 
-  #   :user_name => "ovareni.cz_noreply", 
-  #   :password => "noreply"
-  # } 
+  config.action_mailer.delivery_method = :smtp
+  
+  config.action_mailer.smtp_settings = { 
+    :address => "omega.polomino.cz", 
+    :port => 25, 
+    :domain => "ovareni.cz", 
+    :authentication => :plain, 
+    :user_name => "ovareni.cz_noreply", 
+    :password => "noreply"
+  } 
   
 
   # The internationalization framework can be changed to have another default locale (standard is :en) or more load paths.
