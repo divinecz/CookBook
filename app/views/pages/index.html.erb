@@ -1,4 +1,4 @@
-<div id="left-side" class="side">
+<div id="left_side" class="side">
 	<h1>O vaření.cz</h1>
 
 	<p id="abstract">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nibh dui, cursus et, dictum molestie, vehicula vel, metus. Aenean vestibulum mi a justo mollis semper. Nunc eget neque eleifend enim dignissim rhoncus. Aliquam non purus.</p>
@@ -20,9 +20,9 @@
 
 <hr class="hidden" />
 
-<div id="right-side" class="side">
+<div id="right_side" class="side">
 	<h2 class="hidden">Hlavní menu</h2>
-	<ul id="main-menu">
+	<ul id="main_menu">
 		<li><%= link_to "Recepty", "#" %></li>
 		<li><%= link_to "Blog", "#" %></li>
 		<li><%= link_to "O projektu", "#" %></li>
@@ -35,7 +35,7 @@
 	<div id="reg">
 		<h2>Vytvoření kuchařky</h2>
 		<p>Chcete-li mít vlastní kuchařku, zadejte do následující kolonky svou e-mailovou adresu a můžete začít. Na zadanou adresu Vám poté zašleme další potřebné informace.</p>
-		<% form_for @user do |f| -%>
+		<% form_for @user, :html => { :autocomplete => "off" } do |f| -%>
 			<%= f.label :email, "E-mail" %>
 			<%= f.text_field :email %>
 			<%= f.submit "Vytvořit", :disable_with => 'Vytvořit' %>
@@ -45,15 +45,6 @@
 	</div>
 	
 	<hr class="hidden" />
-	
-	<div class="recipes-block">
-		<h2>Nové recepty</h2>
-		<ul class="recipes">
-			<% Recipe.new_recipes.each do |recipe| -%>
-				<%= content_tag :li, recipe %>
-			<% end -%>
-		</ul>
-	</div>
 
 	<div class="recipes-block">
 		<h2>Oblíbené recepty</h2>

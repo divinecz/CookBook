@@ -7,6 +7,6 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users
   map.resource :user_session
   map.resource :cookbook
-  map.resources :recipes, :collection => { :recipe_search => :post }
+  map.resources :recipes, :collection => { :recipe_search => :post, :open => :post }, :member => { :send_form => :get, :send => :post }
   map.resources :favorite_recipes
 end

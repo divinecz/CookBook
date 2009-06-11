@@ -1,2 +1,4 @@
+page << "document.title = '#{title "Úprava receptu #{@recipe}"}'"
+
 page[:content].replace_html :partial => 'recipe_form', :locals => { :title => 'Úprava receptu', :recipe => @recipe }
 page[:esc_a].focus

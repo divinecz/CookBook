@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 
   before_validation :fill_empty_columns
 
-  def my_recipes(limit = 8)
+  def my_recipes(limit = 12)
     FavoriteRecipe.scoped_by_user_id(self).find(:all, :order => 'id DESC', :limit => limit, :include => :recipe).collect(&:recipe)
   end
 

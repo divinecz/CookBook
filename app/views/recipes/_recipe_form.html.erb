@@ -1,5 +1,5 @@
 <%- if (recipe rescue false) -%>
-	<p id="esc"><%= link_to_remote "Zpět", :url => recipe, :method => :get, :html => { :id => 'esc_a', :title => 'Vrátit se zpět k receptu.', :href => recipe_path(recipe), :tabindex => 1 } %></p>
+	<p id="esc"><%= link_to_remote "<u>Z</u>pět", :url => recipe, :method => :get, :html => { :id => 'esc_a', :title => 'Vrátit se zpět k receptu.', :href => recipe_path(recipe), :tabindex => 1, :accesskey => 'z' } %></p>
 <%- end -%>
 
 <h2><%= title rescue "Vytvoření nového receptu" %></h2>
@@ -9,10 +9,28 @@
 	<%= f.text_field :name, :class => 'big', :tabindex => 2 %></p>
 	
 	<p><%= f.label :raw_ingredients, 'Ingredience<span class="minor"> — Každá na vlastní řádek (oddělené entrem)</span>' %>
-	<%= f.text_area :raw_ingredients, :rows => [10, @recipe.recipe_ingredients.length+1].max, :cols => 60, :tabindex => 3 %></p>
+	<%= f.text_area :raw_ingredients, :rows => 9, :cols => 60, :tabindex => 3 %></p>
 	
 	<p><%= f.label :directions, "Postup" %>
-	<%= f.text_area :directions, :rows => [8, @recipe.directions_rows_count+1].max, :cols => 60, :tabindex => 4 %></p>
+	<%= f.text_area :directions, :value => @recipe.directions, :rows => 8, :cols => 60, :tabindex => 4 %></p>
 	
-	<%= f.submit "Uložit recept", :disable_with => 'Ukládám...', :tabindex => 5 %>
+	<table>
+		<tr><td>
+		<%= f.label :servings, "Počet porcí" %>
+		<%= f.text_field :servings, :tabindex => 5 %><span class="units">ks</span>
+		</td><td>
+		<%= f.label :time, "Doba přípravy" %>
+		<%= f.text_field :time, :tabindex => 6 %><span class="units">min</span>
+		</td><td style="width: 200px; text-align: right">
+			<br />
+			<%#= link_to_function("Další možnosti receptu", nil) { |page| page[:modal].appear(:duration => 0.4) } %>
+		</td></tr>
+	</table>
+	<%= f.submit "Uložit recept", :disable_with => 'Ukládám...', :tabindex => 7 %>
 <% end -%>
+
+<div id="modal" style="display: none">
+	<p><%= link_to "Přidat fotografii receptu.", nil %></p>
+	<p><%= link_to "Přidat video s přípravou receptu", :action => "index" %></p>
+	<p><br /><br /><%= link_to_function("Hotovo", nil) { |page| page[:modal].fade(:duration => 0.4) } %></p>
+</div>

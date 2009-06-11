@@ -25,6 +25,18 @@ hr + p {
 	display: block;
 }
 
+.wide_form table label, .wide_form table input {
+	width: 7em !important;
+	margin-right: 1em;
+}
+
+.wide_form table .units {
+	position: absolute;
+	margin-top: -3ex;
+	margin-left: 5.6em;
+	color: #aaa;
+}
+
 #wrapper {
 	background-color: #f3f3f3;
 }
@@ -39,45 +51,45 @@ hr + p {
 	margin-right: 5%;
 }
 
-#left-side {
+#left_side {
 	float: left;
 	border-right: 1px solid #e6e6e6;
 }
 
-#right-side {
+#right_side {
 	margin-left: 50%;
 	border-left: 1px solid #e6e6e6;
 }
 
-#right-side h1 {
+#right_side h1 {
 	font-size: 200%;
 	line-height: 1.4;
 	margin-bottom: .9ex;
 }
 
-ul#main-menu {
+ul#main_menu {
 	height: 3.2ex;
 	margin-bottom: 2ex;
 }
 
-ul#main-menu li {
+ul#main_menu li {
 	float: left;
 	margin-right: 1em;
 	line-height: 1;
 	padding: .6ex 0;
 }
 
-ul#main-menu li.right {
+ul#main_menu li.right {
 	margin-right: 0;
 }
 
-ul#main-menu li#search {
+ul#main_menu li#search {
 	float: right;
 	margin: 0;
 	padding: 0;
 }
 
-ul#main-menu li input {
+ul#main_menu li input {
 	border: 1px solid #ccc;
 	color: #666;
 	background-color: #f9f9f9;
@@ -191,4 +203,55 @@ span.author {
 ul.ingredients span {
 	cursor: help;
 	color: rgba(0,0,0,.2);
+}
+
+div#modal {
+	position: absolute;
+	z-index: 1000;
+	top: 0;
+	margin: 0;
+	/*margin-left: -2.2%;*/
+	width: 490px;
+	height: 87%;
+	background-color: rgba(245,245,245,.93);
+	padding-top: 8ex;
+}
+
+#modal > * {
+	margin-left: 5%;
+	margin-right: 5%;
+	background-color: #f3f3f3;
+}
+
+#modal p#esc {
+	margin-top: 1ex;
+}
+
+fieldset {
+	border: 1px solid #888;
+	padding: 3ex 5em;
+}
+
+legend {
+	padding: 1ex;
+	font-size: 144%;
+	margin-left: -1ex;
+}
+
+#new_user_session {
+	width: 34em;
+	margin: 13ex auto;
+}
+
+#new_user_session input {
+	margin-bottom: 4ex;
+}
+
+#user_session_password {
+	display: block;
+	margin-bottom: 2ex;
+}
+
+#user_session_submit {
+	margin-right: .7em;
 }

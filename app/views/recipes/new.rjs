@@ -1,2 +1,4 @@
+page << "document.title = 'Vytvoření nového receptu'"
+
 page[:content].replace_html :partial => 'recipe_form', :locals => { :recipe => @last_recipe }
 page[:recipe_name].focus

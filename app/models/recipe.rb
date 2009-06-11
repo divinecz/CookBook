@@ -17,32 +17,36 @@ class Recipe < ActiveRecord::Base
     @my_favorite ||= UserSession.current_user.favorite_recipes.find_by_recipe_id(self)
   end
   
-  def self.popular_search(recipe, limit = 4)
+  def self.popular_search(recipe, limit = 8)
     with_scope :find => { :conditions => ['name like ?', "%#{recipe[:name].gsub(' ', '%')}%"] } do
       popular_recipes(limit)
     end
   end
   
-  def self.new_search(recipe, limit = 4)
-    with_scope :find => { :conditions => ['name like ?', "%#{recipe[:name].gsub(' ', '%')}%"] } do
-      new_recipes(limit)
-    end
-  end
+  # def self.new_search(recipe, limit = 4)
+  #   with_scope :find => { :conditions => ['name like ?', "%#{recipe[:name].gsub(' ', '%')}%"] } do
+  #     new_recipes(limit)
+  #   end
+  # end
   
-  def self.search(recipe, limit = 8)
+  def self.search(recipe, limit = 12)
     find :all, :conditions => ['name like ?', "%#{recipe[:name].gsub(' ', '%')}%"], :include => :favorite_recipes, :order => 'favorite_recipes.id DESC', :limit => limit
   end
   
-  def self.popular_recipes(limit = 4)
+  def self.popular_recipes(limit = 8)
     find(:all, :conditions => ["favorite_recipes_count > 0"], :order => 'favorite_recipes_count DESC, id DESC', :limit => limit) # TODO: id DESC se muze smazat, pokud bude zbytecne zdrzovat
   end
   
-  def self.new_recipes(limit = 4)
-    scoped_by_next_version_id(nil).find :all, :order => 'created_at DESC', :limit => limit
-  end
+  # def self.new_recipes(limit = 4)
+  #   scoped_by_next_version_id(nil).find :all, :order => 'created_at DESC', :limit => limit
+  # end
 
   def popularity
     favorite_recipes.length
+  end
+  
+  def directions
+    read_attribute(:directions) + "\n" rescue ""
   end
   
   def directions_rows_count
@@ -54,7 +58,7 @@ class Recipe < ActiveRecord::Base
   end
   
   def raw_ingredients
-    @raw_ingredients || recipe_ingredients.collect(&:raw).join("\n")
+    (@raw_ingredients || recipe_ingredients.collect(&:raw).join("\n")) + "\n" rescue ""
   end
   
   def raw_ingredients=(raw_ingredients)
@@ -70,10 +74,14 @@ class Recipe < ActiveRecord::Base
   end
   
   def ==(other)
-    self.name == other.name && self.directions.gsub("\r",'') == other.directions.gsub("\r",'') && self.raw_ingredients == other.raw_ingredients
+    self.time == other.time && self.servings == other.servings && self.name == other.name && self.directions.gsub("\r",'') == other.directions.gsub("\r",'') && self.raw_ingredients == other.raw_ingredients
   end
   
   def to_s
     name
+  end
+  
+  def to_param
+    [id, name.remove_diacritic.downcase.gsub(/[^a-z0-9 ]/, '').gsub('  ',' ').gsub(' ', '-')].join('-')
   end
 end

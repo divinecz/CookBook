@@ -1,2 +1,3 @@
 page[:content].replace_html :partial => @recipe
 page[:recipe_search_sender].value = rand
+page[:recipe_search_name].focus

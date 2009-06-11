@@ -1,7 +1,7 @@
 <div class="recipe_search">
-	<% remote_form_for Recipe.new, :url => recipe_search_recipes_path, :html => { :id => 'recipe_search', :autocomplete => "off", :class => 'wide_form' } do |f| -%>
-		<%= f.label :search_name, 'Název receptu <span class="minor">— Vyhledávání</span>' %>
-		<%= f.text_field :name, :id => 'recipe_search_name', :class => 'big' %>
+	<% remote_form_for Recipe.new, :url => open_recipes_path, :html => { :id => 'recipe_search', :autocomplete => "off", :class => 'wide_form' } do |f| -%>
+		<%= f.label :search_name, 'Vyhledávání<span class="minor"> — Název receptu</span>' %>
+		<%= f.text_field :name, :id => 'recipe_search_name', :class => 'big', :accesskey => 'f' %>
 		
 		<%= hidden_field_tag :recipe_search_sender %>
 	<% end -%>

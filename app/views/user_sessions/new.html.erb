@@ -1,14 +1,13 @@
-<h1>Login</h1>
-
+<% focus 0 -%>
 <% form_for @user_session, :url => user_session_path do |f| %>
-  <%= f.error_messages %>
-  <%= f.label :email %><br />
-  <%= f.text_field :email %><br />
-  <br />
-  <%= f.label :password %><br />
-  <%= f.password_field :password %><br />
-  <br />
-  <%= f.check_box :remember_me %><%= f.label :remember_me %><br />
-  <br />
-  <%= f.submit "Login" %>
-<% end %>
+	<fieldset>
+		<legend>Přihlášení</legend>
+<%#= f.error_messages -%>
+		<%= f.label :email, "E-mail" %>
+		<%= f.text_field :email, :size => 40 %>
+		<%= f.label :password, "Heslo" %>
+		<%= f.password_field :password, :size => 40 %>
+		<%= f.submit "Přihlásit" %>
+		<%= f.check_box :remember_me %> <%= f.label :remember_me, "Trvalé přihlášení", :class => 'inline' %>
+	</fieldset>
+<% end -%>

@@ -1,7 +1,7 @@
 <h1><%= h recipe %></h1>
 <%= render :partial => 'recipe_menu', :locals => { :recipe => recipe } %>
 
-<h2>Ingredience</h2>
+<h2>Ingredience<%= servings_count recipe %></h2>
 
 <ul class="ingredients">
 <% recipe.recipe_ingredients.each do |recipe_ingredient| -%>
@@ -9,9 +9,11 @@
 <% end -%>
 </ul>
 
-<h2>Postup</h2>
+<h2>Postup<%= time recipe %></h2>
 
 <p>
 	<%= h(recipe.directions).gsub("\n", '<br />') %>
 	<span class="author" title="Autor receptu.">—<%= h recipe.owner %></span>
 </p>
+
+<%#= render :partial => 'send_recipe', :locals => { :recipe => recipe } %>

@@ -1,0 +1,11 @@
+<div id="modal">
+	<p id="esc"><%= link_to_function("<u>Z</u>pět", nil, :title => 'Zpět k receptu.', :accesskey => 'z') { |page| page[:modal].remove } %></p>
+	
+	<h1><%= h @recipe %></h1>
+	<h2>Poslání receptu známému</h2>
+	<% form_for User.new(:email => '@'), :url => @recipe, :html => { :class => 'wide_form', :method => :get, :autocomplete => "off" } do |f| -%>
+		<%= f.label :email, "E-mail <span class=\"minor\"> — Příjemce receptu</span>" %>
+		<%= f.text_field :email, :class => 'big' %>
+		<%= f.submit "Poslat", :disable_with => 'Posílám...' %>
+	<% end -%>
+</div>

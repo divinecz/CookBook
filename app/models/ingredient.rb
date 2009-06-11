@@ -11,7 +11,7 @@ class Ingredient < ActiveRecord::Base
   after_create :create_user_ingredient
   
   def create_user_ingredient
-    UserIngredient.create :name => ActiveSupport::Multibyte::Chars.new(name).normalize(:kd).to_s.downcase.gsub(/[^\x00-\x7F]/, ''), :ingredient_id => id
+    UserIngredient.create :name => name.downcase.remove_diacritic, :ingredient_id => id
   end
   
   def to_s

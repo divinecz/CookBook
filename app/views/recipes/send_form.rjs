@@ -1,0 +1,2 @@
+page.insert_html :bottom, :right_side, :partial => 'send_form'
+page[:user_email].focus

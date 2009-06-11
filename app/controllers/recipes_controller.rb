@@ -2,10 +2,18 @@ class RecipesController < ApplicationController
   
   before_filter :require_user#, :except => :show
 
+  def open
+    @recipe = current_user.recipes.search(params[:recipe], 1).first || Recipe.popular_search(params[:recipe], 1).first
+    render(:nothing => true) unless @recipe
+  end
+
+  def send_form
+    @recipe = Recipe.find params[:id]
+  end
+
   def recipe_search
     @recipes = current_user.recipes.search params[:recipe]
-    @new_recipes = Recipe.new_search(params[:recipe], (12-@recipes.length)/1.7)
-    @popular_recipes = Recipe.popular_search(params[:recipe], (12-@recipes.length)/1.7)
+    @suggested_recipes = Recipe.popular_search params[:recipe], (15-@recipes.length)
   end
   
   def index
@@ -24,10 +32,7 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new
     @last_recipe = FavoriteRecipe.scoped_by_user_id(current_user.id).last.try(:recipe)
     respond_to do |wants|
-      wants.html { 
-        load_recipes
-        @focus_f = 1
-        @focus_e = 0 }
+      wants.html { load_recipes }
       wants.js
     end
   end
@@ -79,9 +84,7 @@ class RecipesController < ApplicationController
   def show
     @recipe ||= Recipe.find params[:id]
     respond_to do |wants|
-      wants.html {
-        load_recipes
-        @focus_e = 0 }
+      wants.html { load_recipes }
       wants.js
     end
   end
@@ -109,5 +112,6 @@ class RecipesController < ApplicationController
   
   def load_recipes
     @recipes ||= current_user.my_recipes
+    @suggested_recipes ||= Recipe.popular_recipes(15-@recipes.length)
   end
 end 

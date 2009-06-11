@@ -1,17 +1,17 @@
 <ul class="menu" id="recipe_menu">
 	<% if recipe.my_favorite? -%>
-		<%= content_tag :li, link_to_remote('Upravit', :url => edit_recipe_path(recipe), :method => :get, :html => { :title => 'Upravit recept.', :href => edit_recipe_path(recipe) }) %>
-		<%= content_tag :li, link_to('Poslat', "#", :title => 'Poslat recept známému.') %>
+		<%= content_tag :li, link_to_remote('<u>U</u>pravit', :url => edit_recipe_path(recipe), :method => :get, :html => { :title => 'Upravit recept.', :href => edit_recipe_path(recipe), :accesskey => 'u' }) %>
+		<%= content_tag :li, link_to_remote('<u>P</u>oslat', :url => send_form_recipe_path(recipe), :method => :get, :html => { :title => 'Poslat recept známému.', :accesskey => 'p' }) %>
 		<li>
 			<% remote_form_for recipe.my_favorite?, :html => { :method => :delete } do |f| -%>
-				<%= f.submit "Odstranit", :class => 'warning', :title => 'Odstranit recept z mé kuchařky.' %>
+				<%= f.submit "Odstranit", :class => 'warning', :title => 'Odstranit recept z mé kuchařky.', :accesskey => 'o' %>
 			<% end -%>
 		</li>
 	<% else -%>
 		<li>
 			<% remote_form_for FavoriteRecipe.new do |f| -%>
 				<%= f.hidden_field :recipe_id, :value => recipe.id, :class => 'hidden' %>
-				<%= f.submit "Přidat recept do mé kuchařky" %>
+				<%= f.submit "Přidat recept do mé kuchařky", :accesskey => 'p' %>
 			<% end -%>
 		</li>
 	<% end -%>
