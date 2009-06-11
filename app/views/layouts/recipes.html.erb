@@ -5,8 +5,8 @@
 <head>
 	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 	<title><%= h(yield(:title) || "O vaření.cz – Vaše kuchařka na internetu") %></title>
-	<%= stylesheet_link_tag 'global', 'pages' %>
-	<%= javascript_include_tag 'prototype', 'effects', :cache => true %>
+	<%= stylesheet_link_tag 'global', 'pages', :cache => true %>
+	<%= javascript_include_tag 'prototype', 'effects', 'application', :cache => true %>
 </head>
 <body class="<%= controller.action_name %>"<%= yield :body %>>
 
@@ -16,12 +16,12 @@
 	<% end -%>
 	
 	<div id="left_side" class="side">
-		<h1>O vaření.cz</h1>
+		<h1><%= link_to_function "O vaření.cz", "reset_search()", :href => recipes_path %></h1>
 
 		<%= render :partial => 'recipe_search' %>
 
 		<div class="recipes-block">
-			<h2>Recepty z mé kuchařky</h2>
+			<h2><%= link_to_function "Recepty z mé kuchařky", "reset_search()", :href => recipes_path %></h2>
 			<ul class="recipes" id="my_recipes">
 				<%= render :partial => 'recipe_link', :collection => @recipes %>
 			</ul>

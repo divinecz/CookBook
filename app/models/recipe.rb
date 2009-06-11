@@ -14,7 +14,7 @@ class Recipe < ActiveRecord::Base
   alias :owner :user
   
   def my_favorite?
-    @my_favorite ||= UserSession.current_user.favorite_recipes.find_by_recipe_id(self)
+    @my_favorite ||= UserSession.find.user.favorite_recipes.find_by_recipe_id(self)
   end
   
   def self.popular_search(recipe, limit = 8)
